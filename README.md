@@ -1,21 +1,21 @@
-# Astro Starter Kit: Basics
+# Astro Starter Kit pour interroger une API
+## Pré-requis
+- Avoir installé SPIP sur un serveur avec le plugin collectionjson et renseigné quelques articles
+- Avoir installé Node.js
 
+## Tester le dépôt
 ```
-npm create astro@latest -- --template basics
+git clone https://github.com/paidge/astro-spip.git
+cd astro-spip
+npm install
+# Modifier l'URL de l'API
+nano src/script/fetch.js
+# Lance le serveur de dev sur http://localhost:3000/
+- npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
-
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## 🚀 Structure du projet
 
 ```
 /
@@ -26,8 +26,12 @@ Inside of your Astro project, you'll see the following folders and files:
 │   │   └── Card.astro
 │   ├── layouts/
 │   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   ├── pages/
+│   │   ├── article
+|   |   |   └── [id].astro
+│   │   └── index.astro
+│   └── script/
+│       └── fetch.js
 └── package.json
 ```
 
