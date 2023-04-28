@@ -1,0 +1,20 @@
+---
+export interface Props {
+  title: string
+  body: string
+  href: string
+}
+
+const { href, title, body } = Astro.props
+---
+
+<div class="card">
+  <img src="https://picsum.photos/200" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title">{title}</h5>
+    <p class="card-text">
+      {body}
+    </p>
+    <a href={href} class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>

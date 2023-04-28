@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { getArticles } from "../../script/fetch"
+
+// Cette fonction va permettre de construire toutes les pages en fonction du paramètre id
+// https://docs.astro.build/en/reference/api-reference/#getstaticpaths
+export async function getStaticPaths() {
+  const articles = await getArticles()
+
+  return articles.map(article => {
+    return {
+      params: { id: article.id_article },
+      props: { article }
+    }
+  })
+}
+
+const { id } = Astro.params
+const { article } = Astro.props
+---
+
+<Layout title={article.titre}>
+  <h1>{article.titre}</h1>
+  <p>{article.texte}</p>
+</Layout>

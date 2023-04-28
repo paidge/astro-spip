@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Card from "../components/Card.astro"
+import { getArticles } from "../script/fetch"
+
+const articles = await getArticles()
+---
+
+<Layout title="Page de test">
+  <h1>Page de test</h1>
+  <div
+    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4"
+  >
+    {
+      articles.map(article => (
+        <div class="col">
+          <Card
+            title={article.titre}
+            body={article.texte}
+            href={"article/" + article.id_article}
+          />
+        </div>
+      ))
+    }
+  </div>
+</Layout>
