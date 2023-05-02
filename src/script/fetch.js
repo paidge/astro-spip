@@ -3,14 +3,5 @@ export async function getArticles() {
     "http://dev.plugin/http.api/spipheadless/articles"
   ).then(response => response.json())
 
-  const articles = data.collection.items.map(item => {
-    let obj = {}
-    item.data.forEach(el => {
-      obj[el.name] = el.value
-    })
-
-    return obj
-  })
-
-  return articles
+  return data.collection.items
 }
