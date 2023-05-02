@@ -1,6 +1,6 @@
 export async function getArticles() {
   const data = await fetch(
-    "http://dev.plugin/spip.php?action=api_http&arg=collectionjson/articles"
+    "http://dev.plugin/http.api/spipheadless/articles"
   ).then(response => response.json())
 
   const articles = data.collection.items.map(item => {
