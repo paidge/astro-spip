@@ -1,0 +1,53 @@
+---
+import { getCollection } from "../script/fetch"
+export interface Props {
+  rubrique: {
+    titre: string
+    id_rubrique: string
+    slug: string
+  }
+}
+
+const { rubrique } = Astro.props
+const enfants = await getCollection(
+  "rubriques",
+  "?profondeur=1&id_parent=" + rubrique.id_rubrique
+)
+---
+
+<li class:list={["nav-item", { dropdown: enfants.length != 0 }]}>
+  {
+    enfants.length != 0 ? (
+      <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        {rubrique.titre}
+      </a>
+    ) : (
+      <a class="nav-link" href={"/" + rubrique.slug} role="button">
+        {rubrique.titre}
+      </a>
+    )
+  }
+
+  {
+    enfants.length != 0 && (
+      <ul class="dropdown-menu">
+        {enfants.map(item => (
+          <li>
+            <a
+              class="dropdown-item"
+              href={"/" + rubrique.slug + "/" + item.slug}
+            >
+              {item.titre}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</li>

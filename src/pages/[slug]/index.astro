@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { getCollection } from "../../script/fetch"
+
+export async function getStaticPaths() {
+  const secteurs = await getCollection("rubriques", "?profondeur=0")
+
+  return secteurs.map(secteur => {
+    return {
+      params: { slug: secteur.slug },
+      props: { secteur }
+    }
+  })
+}
+
+const { slug } = Astro.params
+const { secteur } = Astro.props
+---
+
+<Layout title={secteur.titre}>
+  <h1>{secteur.titre}</h1>
+  <p>
+    {secteur.texte}
+  </p>
+</Layout>
