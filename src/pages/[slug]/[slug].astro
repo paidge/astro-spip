@@ -5,23 +5,21 @@ import { getCollection } from "../../script/fetch"
 // Cette fonction va permettre de construire toutes les pages en fonction du paramètre slug
 // https://docs.astro.build/en/reference/api-reference/#getstaticpaths
 export async function getStaticPaths() {
-  const secteurs = await getCollection("rubriques", "?profondeur=1")
+  const rubriques = await getCollection("rubriques", "?profondeur=1")
 
-  return secteurs.map(secteur => {
+  return rubriques.map(rubrique => {
     return {
-      params: { slug: secteur.slug },
-      props: { secteur }
+      params: { slug: rubrique.slug },
+      props: { rubrique }
     }
   })
 }
 
 const { slug } = Astro.params
-const { secteur } = Astro.props
+const { rubrique } = Astro.props
 ---
 
-<Layout title={secteur.titre}>
-  <h1>{secteur.titre}</h1>
-  <p>
-    {secteur.texte}
-  </p>
+<Layout title={rubrique.titre}>
+  <h1>{rubrique.titre}</h1>
+  <div set:html={rubrique.texte} />
 </Layout>

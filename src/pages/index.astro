@@ -16,8 +16,8 @@ const articles = await getCollection("articles")
         <div class="col">
           <Card
             title={article.titre}
-            body={article.texte}
             href={"article/" + article.id_article}
+            set:html={article.texte}
           />
         </div>
       ))

@@ -19,7 +19,5 @@ const { secteur } = Astro.props
 
 <Layout title={secteur.titre}>
   <h1>{secteur.titre}</h1>
-  <p>
-    {secteur.texte}
-  </p>
+  <div set:html={secteur.texte} />
 </Layout>
